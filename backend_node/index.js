@@ -11,6 +11,25 @@ const typeDefs = gql`
     equipments: [Equipment]
     supplies: [Supply]
   }
+  type Mutation {
+    # 추가한 Equipment 반환
+    insertEquipment(
+      id: String,
+      used_by: String,
+      count: Int,
+      new_or_used: String
+    ): Equipment
+
+    # 수정한 Equipment 반환
+    editEquipment(
+        id: String,
+        used_by: String,
+        count: Int,
+        new_or_used: String
+    ): Equipment
+
+    deleteEquipment(id: String): Equipment # 삭제된 Equipment 반환
+  }
   type Team {
     id: Int
     manager: String
@@ -55,6 +74,36 @@ const resolvers = {
     
     equipments: () => database.equipments,
     supplies: () => database.supplies
+  },
+  Mutation: {
+    // Equipment 데이터 추가하기
+    insertEquipment: (parent, args, context, info) => {
+      database.equipments.push(args)
+      return args
+    },
+
+    // Equipment 데이터 수정하기
+    editEquipment: (parent, args, context, info) => {
+        return database.equipments.filter((equipment) => {
+            return equipment.id === args.id
+        }).map((equipment) => {
+            Object.assign(equipment, args)
+            return equipment
+        })[0]
+    },
+  
+    // Equipment 데이터 삭제하기
+    deleteEquipment: (parent, args, context, info) => {
+        const deleted = database.equipments
+            .filter((equipment) => {
+                return equipment.id === args.id
+            })[0]
+        database.equipments = database.equipments
+            .filter((equipment) => {
+                return equipment.id !== args.id
+            })
+        return deleted
+    }
   }
 }
 
