@@ -3,7 +3,7 @@ const dbWorks = require('../dbWorks')
 
 // 스칼라 타입(ID, String, Int, Float, Boolean) - GraphQL 내장 자료형
 const typeDefs = gql`
-    type Equipment {
+    type Equipment implements Tool {
         id: ID!
         used_by: Role! # 열거 타입
         count: Int
@@ -37,6 +37,7 @@ const resolvers = {
                 }
                 return equipment
             }),
+
     },
     Mutation: {
         deleteEquipment: (parent, args) => dbWorks.deleteItem('equipments', args),
