@@ -1,15 +1,23 @@
 {
-  "name": "backend_node",
+  "name": "grapql_with_apollo",
   "version": "1.0.0",
-  "description": "",
+  "description": "GraphQL_with_Apollo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "test",
     "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HRPzz/GrapQL_with_Apollo.git"
   },
   "keywords": [],
   "author": "HRPzz",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HRPzz/GrapQL_with_Apollo/issues"
+  },
+  "homepage": "https://github.com/HRPzz/GrapQL_with_Apollo#readme",
   "dependencies": {
     "apollo-server": "^3.10.2",
     "convert-csv-to-json": "^1.3.3",
