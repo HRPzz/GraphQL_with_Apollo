@@ -13,7 +13,6 @@ const GET_ROLES = gql`
   }
 `;
 
-//
 const GET_ROLE = gql`
   query GetRole($id: ID!) {
     role(id: $id) {

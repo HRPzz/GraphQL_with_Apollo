@@ -20,7 +20,8 @@ const client = new ApolloClient({
 
 function App() {
 
-  const [menu, setMenu] = useState('Roles')
+  // 새로 고침하면 보여지는 페이지 설정
+  const [menu, setMenu] = useState('Teams')
 
   // App-header 아래 메인 화면에 나타날 컴포넌트 매핑
   let mainComp = {
